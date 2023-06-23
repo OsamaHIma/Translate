@@ -1,6 +1,6 @@
-import { useLanguage } from "@/context/LanguageContext";
+import React from "react";
+import { useLanguage } from "./LanguageContext";
 import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
 import { FixedSizeList } from "react-window";
 
 interface LanguageSelectorProps {
@@ -17,6 +17,7 @@ interface LanguageSelectorProps {
   dropdownTextColor?: string;
   dropdownFontSize?: string;
   dropdownPadding?: string;
+  chevronSrc?: string;
 }
 
 const LanguageSelector = ({
@@ -42,6 +43,7 @@ const LanguageSelector = ({
   dropdownTextColor = "",
   dropdownFontSize = "",
   dropdownPadding = "py-2",
+  chevronSrc = "./chevron-down.svg",
 }: LanguageSelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedLanguage, handleLanguageChange } = useLanguage();
@@ -54,7 +56,13 @@ const LanguageSelector = ({
     name = "English";
   }
 
-  const DropdownItem = ({ index, style }: { index: number; style: React.CSSProperties }) => {
+  const DropdownItem = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => {
     const language = languages[index];
     return (
       <button
@@ -78,11 +86,18 @@ const LanguageSelector = ({
         type="button"
       >
         <span className="mr-2">{name}</span>
-        <FaChevronDown />
+        <img src={chevronSrc} alt="chevron" className="h-4 w-4" />
       </button>
       {isOpen && (
-        <div className={`absolute right-0 z-10 mt-2 w-48 ${dropdownBgColor} rounded-md shadow-xl ${dropdownPadding}`}>
-          <FixedSizeList height={200} itemCount={languages.length} itemSize={40} width={200}>
+        <div
+          className={`absolute right-0 z-10 mt-2 w-48 ${dropdownBgColor} rounded-md shadow-xl ${dropdownPadding}`}
+        >
+          <FixedSizeList
+            height={200}
+            itemCount={languages.length}
+            itemSize={40}
+            width={200}
+          >
             {DropdownItem}
           </FixedSizeList>
         </div>

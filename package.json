@@ -1,0 +1,29 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "This is a package for easy made for easy translation based on google translation",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "rm -rf dist && tsc --outDir dist --module commonjs --jsx react src/index.tsx && postcss src/index.css -o dist/index.css && cp -R public dist/"
+  },
+  "keywords": [
+    "translate",
+    "google",
+    "translation"
+  ],
+  "author": "Osama",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-window": "^1.8.9"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "@types/react-window": "^1.8.5",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.1.3"
+  }
+}
